@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const session = require ('express-session')
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
@@ -20,8 +21,9 @@ app.locals.truncatePost = truncatePost
 //------
 //configure ejs
 app.set("view engine","ejs")
+app.set('views', path.join(__dirname, 'views'));
 //serve static path
-app.use(express.static(__dirname,+"/public"))
+app.use(express.static(path.join(__dirname, 'public')));
 
 //pass data
 app.use(express.json())//pass incoming data
